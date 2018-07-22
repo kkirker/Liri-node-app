@@ -8,7 +8,7 @@ let keys = require('./keys');
 
 let spotify = new Spotify(keys.spotify);
 let client = new Twitter(keys.twitter);
-
+let textInput = '';
 let input = process.argv.slice(2).join('-');
 console.log(input);
 
@@ -19,11 +19,11 @@ if (input === 'my-tweets') {
 
 if (input.includes('spotify')) {
     let inputBreak = input.split('-');
-    SongTitle = inputBreak.slice(3).join(' ');
+    songTitle = inputBreak.slice(3).join(' ');
     if (songTitle === null) {
         songTitle = `The Sign`;
     };
-    console.log(SongTitle);
+    console.log(songTitle);
     getSong();
 };
 
@@ -103,6 +103,29 @@ function doDo() {
        let textInput =result.replace('-', ' ').replace('-', ' ').replace(',', '').replace('"',' ').replace('"',' ');
         console.log(textInput);
         
+        if (textInput === 'my-tweets') {
+            getTweets();
+        };
+        
+        if (textInput.includes('spotify')) {
+            let textInputBreak = textInput.split('-');
+            songTitle = textInputBreak.slice(3).join(' ');
+            if (songTitle === null) {
+                songTitle = `The Sign`;
+            };
+            console.log(songTitle);
+            getSong();
+        };
+        
+        if (textInput.includes('movie')) {
+            let textInputBreak = textInput.split('-');
+            movieTitle = textInputBreak.slice(2).join(' ');
+            if (movieTitle === null) {
+                movieTitle = `Mr. Nobody`;
+            };
+            console.log(movieTitle);
+            getMovie();
+        }; 
       });
 };
 
